@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- {{ data }} -->
+    <!-- {% for i in data %}
+    <h1></h1>
+    {{i.name}} <br>
+    {{i.capital}} <br>
+    {{i.callingCodes}} <br>
+    {{i.borders}} <br>
+    {{i.latlng}} <br>
+    {{i.population}} <br>
+    {{i.area}} <br>
+    {{i.flags}} <br>
+    {{i.languages}} <br>
+    {{i.currencies}} <br>
+    {% endfor %} -->
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 300px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+             list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            margin: 10px 0;
+        }
+
+        .card strong {
+            color: #007BFF;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        button ,input{
+            margin-left: 10px;
+            padding: 10px 20px;
+            
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button{
+            background-color: #007BFF;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+    </style>
+    <br><br>
+    <h1>COUNTRY DETAILS</h1>
+    <br><br>
+    <form method="get">
+        <input type="text" name="query" placeholder="Search for a country">
+        <button type="submit">Search</button>
+    </form>
+
+    <div>
+        {% if data %}
+            
+            <div class="container">
+                {% for country in data %}
+                <div class="card">
+                    <img src="{{ country.flag }}" alt="Flag">
+                    <ul>
+                        <li><strong>Name:</strong> {{ country.name }}</li>
+                        <li><strong>Capital:</strong> {{ country.capital }}</li>
+                        <li><strong>Region:</strong> {{ country.region }}</li>
+                        <li><strong>Subregion:</strong> {{ country.subregion }}</li>
+                        <li><strong>Languages:</strong> {{ country.languages|join:", " }}</li>
+                        <li><strong>Calling Code:</strong> {{ country.calling_code }}</li>
+                        <li><strong>Borders:</strong> {{ country.borders|join:", " }}</li>
+                        <li><strong>Latitude & Longitude:</strong> {{ country.latlng|join:", " }}</li>
+                        <li><strong>Population:</strong> {{ country.population }}</li>
+                        <li><strong>Area:</strong> {{ country.area }} km²</li>
+                        <li><strong>Currency Symbol:</strong> {{ country.currency_symbol }}</li>
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No country found. Try searching again.</p>
+        {% endif %}
+    </div>
+
+                        
+
+</body>
+</html>
